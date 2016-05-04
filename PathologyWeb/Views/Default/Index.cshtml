@@ -1,0 +1,78 @@
+﻿@model List<PathologyWeb.CUsers>
+@using GridMvc.Html
+
+
+<div>
+    <br />
+    <div class="thumbnail">
+        <img class="img-responsive" src="http://www.ccgh.com.tw/upload/ad/201512101035_0_大BANNER.jpg" alt="">
+        <br />
+        <br />
+        <h1>病理醫師資訊</h1>
+        <ul id="Doctors" />
+        @*@Html.Grid(Model).Columns(columns =>
+            {
+                columns.Add(model => model.UserName).Titled("UserName").SetWidth(100);
+                columns.Add(model => model.UserAlias).Titled("UserAlias").SetWidth(100);
+                columns.Add(model => model.Password).Titled("Password").SetWidth(100);
+                columns.Add(model => model.DoctorCode).Titled("DoctorCode").SetWidth(100);
+                columns.Add(model => model.Lic).Titled("Lic").SetWidth(100);
+            }).SetRowCssClasses(model => model.DoctorCode == "13862" ? "warning" : string.Empty).WithPaging(10).Sortable().Filterable().WithMultipleFilters()*@
+
+        <!-- /.container -->
+        <script>
+
+                            function cityClickJQuery() {
+                                $.ajax({
+                                    type: "GET",
+                                    url: "http://192.9.12.225/PathologyWebAPI/api/Users",
+                                    data: '',
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    success: function (data) {
+                                        alert(data);
+                                    }
+                                });
+                            }
+
+                            function GetData() {
+                                $.ajax({
+                                    url: "http://192.9.12.225/PathologyWebAPI/api/Users",
+                                    dataType: "json",  // 要求資料類型
+                                    type: "GET", // 請求方法（GET、POST、DELETE、PUT）
+                                    success: function (data) {
+                                        // 取得資料後的處理
+                                        //alert(data);
+                                        $.each(data, function (key, value)
+                                        {
+                                            alert(value.UserAlias);
+                                            //var str = data[i].UserAlias;
+                                            //$('<li/>', {html:str}).appendTo($('#Doctors'));
+                                        })
+                                    }
+                                });
+                            }
+
+
+                            //$(function () {
+                            //    // 傳送 AJAX 請求
+                            //    $.getJSON("http://192.9.12.225/PathologyWebAPI/api/Users",
+                            //    function (data) {
+                            //        // 成功, data 會包含所有產品列表
+                            //        $.each(data, function (key, val) {
+                            //            // 格式化文字資料，以方便顯示
+                            //            var str = val.UserAlias + ': $' + val.Lic;
+
+                            //            // 將產品資料建置成 li項目，然後加入 ul 元素中
+                            //            $('<li/>', { html: str }).appendTo($('#Doctors'));
+                            //        });
+                            //    });
+                            //});
+
+        </script>
+
+        <input type="button" value="send" onclick="GetData()" />
+
+
+    </div>
+</div>
