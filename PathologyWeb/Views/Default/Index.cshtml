@@ -42,13 +42,41 @@
                                     type: "GET", // 請求方法（GET、POST、DELETE、PUT）
                                     success: function (data) {
                                         // 取得資料後的處理
-                                        //alert(data);
-                                        $.each(data, function (key, value)
+                                        alert(data);
+                                        var json_data = $.parseJSON(data);
+
+                                        var output = "";
+                                        for (var i in json_data)
                                         {
-                                            alert(value.UserAlias);
-                                            //var str = data[i].UserAlias;
-                                            //$('<li/>', {html:str}).appendTo($('#Doctors'));
-                                        })
+                                            output += "<li>" + json_data[i].UserAlias + " : " + json_data[i].Lic + "</li>";
+                                        }
+
+                                        $('#Doctors').html(output);
+                                        //$.each(data, function (key, value)
+                                        //{
+                                        //    alert(value.UserAlias);
+                                        //    //var str = data[i].UserAlias;
+                                        //    //$('<li/>', {html:str}).appendTo($('#Doctors'));
+                                        //})
+
+                                        /*response = '[{"Language":"jQuery","ID":"1"},{"Language":"C#","ID":"2"},
+                           {"Language":"PHP","ID":"3"},{"Language":"Java","ID":"4"},
+                           {"Language":"Python","ID":"5"},{"Language":"Perl","ID":"6"},
+                           {"Language":"C++","ID":"7"},{"Language":"ASP","ID":"8"},
+                           {"Language":"Ruby","ID":"9"}]'*/
+                                        //console.log(response);
+
+                                        //var json_obj = $.parseJSON(response);//parse JSON
+
+                                        //var output = "<ul>";
+                                        //for (var i in json_obj) {
+                                        //    output += "<li>" + json_obj[i].Language + ",  " + json_obj[i].ID + "</li>";
+                                        //}
+                                        //output += "</ul>";
+
+                                        //$('span').html(output);
+
+
                                     }
                                 });
                             }
