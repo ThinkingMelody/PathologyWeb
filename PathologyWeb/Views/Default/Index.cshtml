@@ -48,7 +48,12 @@
                                         var output = "";
                                         for (var i in json_data)
                                         {
-                                            output += "<li>" + json_data[i].UserAlias + " : " + json_data[i].Lic + "</li>";
+                                            var txtLic = "";
+                                            if (json_data[i].Lic != null)
+                                            {
+                                                txtLic = json_data[i].Lic;
+                                            }
+                                            output += "<li>" + json_data[i].UserAlias + " : " + txtLic + "</li>";
                                         }
 
                                         $('#Doctors').html(output);
